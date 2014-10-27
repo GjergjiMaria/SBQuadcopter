@@ -1,0 +1,98 @@
+
+
+html,body {
+  
+  padding: 0;
+  font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: #fff;
+  
+}
+
+
+#weatherGrid {
+  width: 30%; 
+  height: 30%; 
+  float: left;
+  margin: 2px;
+  text-transform: uppercase;
+}
+
+#weatherWidget {
+  width: 100%; 
+  height: 100%; 
+  float: left;
+  margin: 0px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+#weatherWidget h1 {
+  margin: 0;
+  color: #fff;
+  font-family: weather;
+  font-size: 250px;
+  font-weight: normal;
+  line-height: 1.0;
+}
+
+
+#weatherWidget h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 200;
+  text-align: center;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weatherWidget ul {
+  margin: 1;
+  padding: 1;
+}
+
+#weatherWidget li {
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  margin: 0 0 0 0;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+#map-canvas {
+width: 800px; 
+height: 450px; 
+float: right
+position: relative; 
+overflow: hidden; 
+-webkit-transform: translateZ(0px); 
+background-color: rgb(229, 228, 223);
+}
+
+#googleMaps {
+width: 800px; 
+height: 450px; 
+float: right
+position: relative; 
+
+}
+
+
+/* LIST #4 */
+#weatherInfo { 
+	font-size:13px; 
+}
+
+#weatherInfo li {
+	 display:block; 
+	 text-decoration:none; 
+	 color:#FFFFFF; 
+	 background-color:#A0A0A0;
+	 line-height:30px;
+  	 border-bottom-style:solid; 
+  	 border-bottom-width:1px; 
+  	 border-bottom-color:#CCCCCC; 
+  	 padding-left:10px; 
+
+ }
