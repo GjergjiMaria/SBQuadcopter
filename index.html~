@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<title>Flying Unmanned Quadcopter Inovations Technology</title>
+	<!-- start:bootstrap v3.2.0 -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- start:font awesome v4.1.0 -->
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <!-- start:bootstrap reset -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reset.css">
+	<!-- start:style arjuna -->
+	<link rel="stylesheet" type="text/css" href="css/arjuna.css">
+    <link rel="stylesheet" type="text/css" href="plugins/owl.carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/owl.carousel/owl-carousel/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="plugins/owl.carousel/owl-carousel/owl.transitions.css">
+    <!-- start:style for this page -->
+
+
+<script>
+	function Ajax(url, data, callback){
+		    var http = new XMLHttpRequest();
+		    http.onreadystatechange=function(){
+		            if(http.readyState==4 && http.status==200){
+		                    callback(http.responseText);
+		            }
+		    }
+		    urlBase = "http://demo.philadelphiagamelab.org/Lux/";
+		    http.open("POST", urlBase + url, true);
+		    http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		    http.send(JSON.stringify(data));
+	}
+
+
+	function getJsonFromUrl() {
+	  var query = location.search.substr(1);
+	  var result = {};
+	  query.split("&").forEach(function(part) {
+		var item = part.split("=");
+		result[item[0]] = decodeURIComponent(item[1]);
+	  });
+	  return result;
+	}
+	function launchRocket(){
+		console.log("Rocket Launched");
+	}
+
+window.onload = function(){
+
+	// Carousel
+	Ajax("/Assets/queryNoAuth.php"
+		, { 'query': {'type' : 'route'}}//, '$orderBy':{'pathNumber':-1}}
+		, function(data){
+			var route = JSON.parse(data);
+			var Routes = document.getElementById("Routes");	
+			console.log(route);
+			for(var i=1; i<data.length; i++){
+				if(i==1){
+					Routes.innerHTML += "<li class='active'><a href='#"+i+"' role='tab' data-toggle='tab'>"+i+"</a></li>";
+				}else{
+					Routes.innerHTML += "<li><a href='#"+i+"' role='tab' data-toggle='tab'>"+i+"</a></li>";
+				}
+				if(i%3 == 0){
+					Routes.innerHTML += "<br/><br/><br/>";
+				}
+			}
+				Routes.innerHTML += "<li><a href='#"+i+"' role='tab' data-toggle='tab'>+</a></li>";
+		});
+}
+
+
+</script>
+
+
+
+</head>
+<body class="cl-default fixed">
+
+    <!-- start:navbar top -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <i class="fa fa-pied-piper-alt"></i> QuadCopter
+        </a>
+    </header>
+    <!-- end:navbar top -->
+
+    <!-- start:wrapper body -->
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- start:left sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+		    <h3 style="color:#FFF" >Route Selector</h3>
+                    <!-- Route Tabs -->
+                    <ul class="nav nav-tabs" id="Routes" role="tablist">
+
+                    </ul>
+                </div>
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+		   <!--li class="active">
+                        <a href="index.html">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="">
+                            <i class="fa fa-cog"></i>
+                            <span>Component</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="todo-list.html"><i class="fa fa-circle-o"></i> Todo List</a></li>
+                            <li><a href="draggable-portlet.html"><i class="fa fa-circle-o"></i> Draggable Portlet</a></li>
+                            <li><a href="nestable.html"><i class="fa fa-circle-o"></i> Nestable</a></li>
+                        </ul>
+                    </li-->
+                </ul>
+                <!-- start:project stats -->
+                <div class="project-sidebar">
+                    <div class="main-project-sidebar">
+                        <p><strong>Quadcopter Battery</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                                <span class="sr-only">90% Charged</span>
+                            </div>
+                        </div>
+                        <p>90% Charged</p>
+                    </div>
+                    <div class="main-project-sidebar">
+                        <p><strong>RF Signal Strength</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                                <span class="sr-only">80% Strength</span>
+                            </div>
+                        </div>
+                        <p>40% Strength</p>
+                    </div>
+                    <div class="main-project-sidebar">
+                        <p><strong>Pizza Devlivry</strong></p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                                <span class="sr-only">40% Complete</span>
+                            </div>
+                        </div>
+                        <p>40% Delivered</p>
+                    </div>
+                </div>
+            </section>
+        </aside>
+        <!-- end:left sidebar -->
+
+        <!-- start:right sidebar -->
+        <aside class="right-side">
+            <section class="content">
+
+                <!-- start:content -->
+                <div class="row">
+
+                    <!-- start:statistic -->
+                    <div class="col-lg-12 flot-index">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <section>
+                                    <header class="font-bold padder-v">
+                                        Map View
+                                    </header>
+                                    <div class="panel-body">
+					<!-- EMBED MAP HERE -->
+			<iframe width="500" height="210" frameborder="0" style="border:0"
+			src="https://www.google.com/maps/embed/v1/view?zoom=16&center=39.9566%2C-75.1899&key=AIzaSyAflfqpA5-2kjar-H-peFmK-A87oDS9cR8"></iframe>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-xs-3">
+                                            <span class="h4">58</span><br>
+                                            <small>Total Runs</small>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="h4">70</span><br>
+                                            <small>Radiation's Detected</small>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="h4">500</span><br>
+                                            <small>Wing Rotations</small>
+                                        </div>
+                                     	<button type="button" onclick="launchRocket()" class="btn btn-danger"><br/><large>Launch Rocket</large><br/></button>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-sm-6">
+                                <section>
+                                    <header class="font-bold padder-v">
+                                        QuadCopter View
+                                    </header>
+                                    <div class="panel-body flot-legend">
+					<!-- EMBED VIDEO FEED HERE -->
+					<iframe width="500" height="281" src="//www.youtube.com/embed/-vmdG2wE7pY?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0"></iframe>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end:statistic -->
+
+                    <!-- start:site information -->
+                    <div class="site-information">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="the-box bg-warning tiles-information">
+                                    <i class="fa fa-users icon-bg"></i>
+                                    <div class="tiles-inner text-center">
+                                        <p>Temperature</p>
+                                        <h1 class="bolded">50F</h1> 
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            </div>
+                                        </div>
+                                        <p><small>High: 70F</small></p>
+                                        <p><small>Low: -30F</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="the-box bg-info tiles-information">
+                                    <i class="fa fa-shopping-cart icon-bg"></i>
+                                    <div class="tiles-inner text-center">
+                                        <p>Weather</p>
+                                        <h1 class="bolded">Sunny</h1> 
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            </div>
+                                        </div>
+                                        <p><small>Chance of Rain: 60%</small></p>
+                                        <p><small>Chance of Snow: 5%</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="the-box bg-danger tiles-information">
+                                    <i class="fa fa-comments icon-bg"></i>
+                                    <div class="tiles-inner text-center">
+                                        <p>Earthquake Update</p>
+                                        <h1 class="bolded">200 Miles</h1> 
+                                        <p><small>13 hours ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="the-box bg-primary tiles-information">
+                                    <i class="fa fa-money icon-bg"></i>
+                                    <div class="tiles-inner text-center">
+                                        <p>Earthquake Map</p>
+					<!-- PUT EARTHQUAKE MAP HERE -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end:site information -->
+                <!-- end:content -->
+            </section>
+        </aside>
+        <!-- end:right sidebar -->
+    </div>
+    <!-- end:wrapper body -->
+
+	<!-- start:javascript for all pages -->
+		<!-- start:jquery -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<!-- start:bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- start:arjuna.js -->
+		<script src="js/arjuna.js"></script>
+	<!-- end:javascript for all pages-->
+
+    <!-- start:javascript for this page -->
+    <script src="plugins/flot/jquery.flot.min.js"></script>
+    <script src="plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="plugins/flot/jquery.flot.spline.js"></script>
+    <script src="plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="plugins/flot/jquery.flot.resize.js"></script>
+    <script src="plugins/flot/jquery.flot.grow.js"></script>
+    <script src="plugins/flot/demo.js"></script>
+    <script src="plugins/owl.carousel/owl-carousel/owl.carousel.js"></script>
+    <script src="js/owl-carousel.js"></script>
+    <!-- end:javascript for this page -->
+
+</body>
+</html>
